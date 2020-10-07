@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="URF-8">
+    <title>v-if v-show v-for</title>
+    <script src="./vue.js"></script> 
+</head>
+<body>
+
+    <!-- v-if v-show v-for
+        v-if false 时移除元素
+        v-show 隐藏元素
+        v-for 遍历元素 :key 是为了性能考虑，用index也有问题？
+    -->
+<div id="root">
+    <div>
+
+        <div v-if="show">{{firstName}}{{lastName}}</div>
+        <button @click="handleClick">控制上面div是否展示</button>
+        <ul>
+            <li v-for="(item,index) of list" :key="index">
+                {{item.code}} {{item.name}}
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#root",
+        data:{
+            firstName: "显春",
+            lastName: "李",
+            show: true,
+            list:[{"code":"12","name":"张三"},{"code":"123","name":"李四"}]
+        },
+        methods: {
+            handleClick: function(){
+                this.show = !this.show;
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

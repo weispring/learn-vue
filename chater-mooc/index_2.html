@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="URF-8">
+    <title>Vue入门</title>
+    <script src="./vue.js"></script> 
+</head>
+<body>
+
+    <!-- 属性绑定和双向数据绑定v-modle
+        带有v指令后面的字符串都是表达式，不再是字符串了
+    -->
+<div id="root">
+    <div v-bind:title="title">
+        hello <br>
+        <input :value="content">
+        <input v-model="content">
+        <div>{{content}}</div>
+    </div>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#root",
+        data:{
+            title: "hello world",
+            content: "<h1>标题</h1>"
+        },
+        methods: {
+            handleClick: function(){
+                this.content = "hell world";
+            }
+        }
+    })
+</script>
+</body>
+</html>

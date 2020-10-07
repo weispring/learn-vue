@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="URF-8">
+    <title>Vue入门</title>
+    <script src="./vue.js"></script> 
+</head>
+<body>
+
+    <!-- 计算属性和侦听器
+    -->
+<div id="root">
+    <div>
+        <input v-model="firstName">
+        <input v-model="lastName">
+        <div>{{firstName}}{{lastName}}</div>
+        <div>{{fullName}}</div>
+        <div>{{count}}</div>
+    </div>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#root",
+        data:{
+            firstName: "显春",
+            lastName: "李",
+            count: 0
+        },
+        computed:{
+            fullName: function(){
+                return this.firstName + this.lastName;
+            }
+        },
+        watch: {
+            fullName: function(){
+                this.count ++ ;
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

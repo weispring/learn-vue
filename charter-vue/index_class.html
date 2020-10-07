@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="URF-8">
+    <title>Vue入门</title>
+    <script src="./vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+</head>
+<body>
+<!--
+
+-->
+<div id="root">
+      <!-- 我们可以传给 v-bind:class 一个对象，以动态地切换 class：
+           两种方式，绑定一个{} 或者在vue 里面创建
+           在vue data里面创建或者是在computed属性里面创建函数返回
+
+    -->
+    <div v-bind:class="{divGreen: divGreenf,divRed:divRedf}">测试类样式</div>
+    
+    <br>
+    <div v-bind:class="[divGreenClass,divRedClass]">测试类样式</div>
+      
+    <br>
+    <div v-bind:class="[divGreen ? divGreenClass : '', divRedClass]">[divGreen ? divGreenClass : '', divRedClass]</div>
+    <br>
+    <!-- 对象的divGreen是 类样式名称，不能是data的变量名，若是变量无法解析 -->
+    <div v-bind:class="[{ divGreen: divGreenf  }, divRedClass]">[{ divGreen: divGreenClass }, divRedClass]</div>
+
+    <!-- 对于带有class属性的组件，我们任然可以通过class、:class 添加样式 
+         todo 没有渲染到 
+    -->
+    <my-component class="baz boo" v-bind:class='{ divGreen: divGreenf }'></my-component>
+
+    <!--绑定内联样式  包含对象语法和数组语法-->
+    <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">绑定内联样式</div>
+
+    <div v-bind:style="styleObject">绑定内联样式</div>
+</div>
+
+<script>
+    var data = {
+        "firstName":"春",
+        "lastName":"李",
+        "question": '',
+        "answer": "I cannot give you an answer until you ask a question!",
+        "divGreenf": true,
+        "divRedf": false,
+        "classObject": {
+            "divGreen": true,
+            "text-divRed": false
+        },
+        "divGreenClass": 'divGreen',
+        "divRedClass": 'divRed',
+        activeColor: 'red',
+        fontSize: 30,
+        styleObject: {
+                color: 'red',
+                fontSize: '13px'
+        }
+
+    };
+
+    var root =  new Vue({
+            el: "#root",
+            data: data,
+            methods: {
+                doSomething: function(){
+                    alert("doSomething")
+                }
+            },
+            computed: {
+                computedclassObject: function () {
+                    return {
+                        "divGreen": true,
+                        "text-divRed": false
+                    }
+                }
+            },
+
+            watch: {
+
+            },
+            created: function () {
+            }
+
+
+
+        });
+        
+        Vue.component('my-component', {
+            template: '<p class="foo bar">Hi</p>'
+        })
+
+</script>
+
+<style scoped>
+    .divGreen{
+        color: green;
+    }
+
+    .divRed{
+        color: red;
+    }
+
+</style>
+</body>
+</html>

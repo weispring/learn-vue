@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="URF-8">
+    <title>todo list 练习</title>
+    <script src="./vue.js"></script> 
+</head>
+<body>
+
+    <!-- todo list 练习
+    -->
+<div id="root">
+    <div>
+        编码：<input v-model="inputCode">
+        名称：<input v-model="inputName">
+        <button @click="handleClick">提交</button>
+
+        <br>
+        todo list
+        <ul>
+            <li v-for="(item,index) of list" :key="index">
+                {{item.code}} {{item.name}}
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#root",
+        data:{
+            inputName: '',
+            inputCode: '',
+            list:[]
+        },
+        methods: {
+            handleClick: function(){
+                var person = new Object();
+                person.name = this.inputName;
+                person.code = this.inputCode;
+                this.list.push(person);
+                this.inputCode = '';
+                this.inputName = '';
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

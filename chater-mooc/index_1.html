@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="URF-8">
+    <title>Vue入门</title>
+    <script src="./vue.js"></script> 
+</head>
+<body>
+
+    <!-- v-text,v-hmtl 后面跟数据变量 
+         事件和方法的绑定
+         v-on:指令可以用 @符号代替
+    -->
+<div id="root" v-html="content" v-on:click="handleClick">
+   
+</div>
+
+<script>
+    new Vue({
+        el: "#root",
+        data:{
+            msg: "hello world",
+            content: "<h1>标题</h1>"
+        },
+        methods: {
+            handleClick: function(){
+                this.content = "hell world";
+            }
+        }
+    })
+</script>
+</body>
+</html>

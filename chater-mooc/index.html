@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="URF-8">
+    <title>Vue入门</title>
+    <script src="./vue.js"></script> 
+</head>
+<body>
+<!-- 注释 CTRL+K+C 取消注释 CTRL+K+U -->
+    <!-- 挂载点 模板 实例  模板是挂载点内容，模板可以在vue对象里面，也可以放在挂载点里面，只能放一个地方-->
+<div id="root">
+    <h1>标题 {{msg}}</h1>
+</div>
+
+<script>
+    new Vue({
+        el: "#root",
+        template: "<h1>标题 {{msg}}</h1>",
+        data:{
+            msg: "hello world"
+        }
+    })
+</script>
+</body>
+</html>

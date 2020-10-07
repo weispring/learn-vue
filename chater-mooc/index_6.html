@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="URF-8">
+    <title>组件</title>
+    <script src="./vue.js"></script> 
+</head>
+<body>
+
+    <!-- 全局组件 局部组件
+    -->
+<div id="root">
+    <div>
+        名称：<input v-model="inputName">
+        <button @click="handleClick">提交</button>
+
+        <br>
+        <todo-item></todo-item>
+        todo list 
+        <ul>
+        <todo-item v-for="(item,index) of list" :key="index" :content="item"></todo-item>
+        <todo-item-local></todo-item-local>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+    //全局组件,命名貌似不能有大写,组件可以接受参数,组件和vue实例是同一个概念，有相同的属性
+    Vue.component('todo-item', {
+        'props':["content"],
+        template: "<li>{{content}}</li>"
+    });
+
+    //局部组件
+    var localComponent = {
+        "template": "<li>item</li>"
+    };
+
+
+    new Vue({
+        el: "#root",
+        components: {
+            'todo-item-local': localComponent 
+        },
+        data:{
+            inputName: '',
+            inputCode: '',
+            list:[]
+        },
+        methods: {
+            handleClick: function(){
+                this.list.push(this.inputName);
+                this.inputName = '';
+            }
+        }
+
+    })
+</script>
+</body>
+</html>
